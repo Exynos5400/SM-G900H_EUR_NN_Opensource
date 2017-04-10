@@ -466,7 +466,7 @@ static int ecryptfs_open(struct inode *inode, struct file *file)
 						__func__, (long)ts.tv_sec, (long)dlp_data.expiry_time.tv_sec, ecryptfs_dentry->d_name.name);
 #endif
 				if ((ts.tv_sec > dlp_data.expiry_time.tv_sec) &&
-						dlp_isInterestedFile(mount_crypt_stat->userid, ecryptfs_dentry->d_name.name)==0) {
+						dlp_isInterestedFile(ecryptfs_dentry->d_name.name)==0) {
 					
 					if(in_egroup_p(AID_KNOX_DLP_MEDIA)) { //ignore media notifications
 					/* Command to delete expired file  */
