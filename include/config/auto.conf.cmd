@@ -984,6 +984,12 @@ endif
 ifneq "$(ARCH)" "arm"
 include/config/auto.conf: FORCE
 endif
+ifneq "$(ANDROID_MAJOR_VERSION)" ""
+include/config/auto.conf: FORCE
+endif
+ifneq "$(ANDROID_VERSION)" "990000"
+include/config/auto.conf: FORCE
+endif
 ifneq "$(SRCARCH)" "arm"
 include/config/auto.conf: FORCE
 endif
