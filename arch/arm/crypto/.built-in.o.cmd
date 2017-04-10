@@ -1,0 +1,1 @@
+cmd_arch/arm/crypto/built-in.o :=  /home/aupreti72/twport/SM-G900H_EUR_NN_Opensource/arm-eabi-4.8/bin/arm-eabi-ld -EL    -r -o arch/arm/crypto/built-in.o arch/arm/crypto/first_file_asm.o arch/arm/crypto/aes-arm.o arch/arm/crypto/last_file_asm.o 

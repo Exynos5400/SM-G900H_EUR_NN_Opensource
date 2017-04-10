@@ -9,6 +9,6 @@ make clean && make mrproper
 echo "export ARCH=arm"
 export ARCH=arm
 
-make exynos5422-k3g_defconfig
+make exynos5422-k3g_00_defconfig
 
 make
