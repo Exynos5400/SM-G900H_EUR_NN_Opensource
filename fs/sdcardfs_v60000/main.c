@@ -334,6 +334,8 @@ static int sdcardfs_read_super(struct super_block *sb, const char *dev_name,
 		if (!silent && !err)
 			printk(KERN_INFO "sdcardfs: mounted on top of %s type %s\n",
 						dev_name, lower_sb->s_type->name);
+		ST_LOG("sdcardfs: mounted on top of %s type %s\n",
+						dev_name, lower_sb->s_type->name);
 		goto out;
 	}
 	/* else error: fall through */

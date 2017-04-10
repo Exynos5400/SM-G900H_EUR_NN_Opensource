@@ -38,6 +38,8 @@ static void sdcardfs_put_super(struct super_block *sb)
 
 	printk(KERN_ERR "sdcardfs: umounted dev_name %s\n", 
 				spd->devpath ? spd->devpath : "");
+	ST_LOG("sdcardfs: start to umount dev_name %s\n",
+				spd->devpath ? spd->devpath : "");
 	if(spd->devpath)
 		kfree(spd->devpath);
 
@@ -196,8 +198,12 @@ static long sdcardfs_propagate_lookup(struct super_block *sb, char* pathname) {
 	const struct cred *saved_cred = NULL;
 
 	sbi = SDCARDFS_SB(sb);
-	propagate_path = kmalloc(PATH_MAX, GFP_KERNEL);
 	OVERRIDE_ROOT_CRED(saved_cred);
+	propagate_path = kmalloc(PATH_MAX, GFP_KERNEL);
+	if (!propagate_path) {
+		REVERT_CRED(saved_cred);
+		return -ENOMEM;
+	}
 	if (sbi->options.type != TYPE_NONE && sbi->options.type != TYPE_DEFAULT) {
 		snprintf(propagate_path, PATH_MAX, "/mnt/runtime/default/%s%s",
 				sbi->options.label, pathname);
